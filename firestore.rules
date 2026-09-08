@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // The browser never talks to Firestore directly. All access is validated
+    // in server routes through the Admin SDK, so public client access is denied.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,19 +1,23 @@
 # GDG on Campus VIT Chennai — Recruitment Portal
 
+👉 Deployed Live Link of the Recruitment Portal Website - https://gdg-portal-phi.vercel.app/
+
 A production-minded recruitment portal for **GDG on Campus, VIT Chennai**. The project turns a basic application site into a polished, accessible candidate experience with reliable application storage, protected review workflows, and a clear path to deployment.
 
 The portal supports 12 departments: Management, Publicity, Outreach, UI/UX, Creatives, Web Dev, App Dev, Game Dev, Data Science, Blockchain, Cloud & DevOps, and Competitive Programming.
 
 ## What I improved
 
-- **Designed a complete candidate experience** — responsive landing page, department discovery, focused application flow, confirmation state, and an accessible Day / Night theme.
-- **Added a real authentication journey** — email/password sign-in plus Google OAuth support, with configuration kept outside source control.
-- **Fixed the hidden response-storage bug** — the old form showed a required motivation question but never included its answer in the submitted payload. It is now validated and stored as `profile.motivation`.
-- **Made submission reliable** — selected departments are submitted as one validated request in a Firestore transaction, preventing partial saves and race conditions.
-- **Prevented duplicates safely** — deterministic application IDs and request IDs make retries idempotent and enforce one application per candidate/department.
-- **Protected sensitive operations** — applicant identity comes from the server session, admin tools require an admin role, and Firestore denies direct browser reads/writes.
-- **Built an admin review foundation** — protected applicant listing, searching, filters, shortlist status, and audited email delivery.
-- **Improved performance and maintainability** — removed wasteful render work, used stable React keys and derived state, and kept a canonical department/question catalogue.
+ - Rebuilt the portal into a polished, responsive GDG on Campus VIT Chennai recruitment experience with a clear candidate journey from discovery to submission.
+- Added Google OAuth and email/password authentication so that students can sign in with Google easily, keeping credentials securely outside the codebase.
+- Implemented an accessible Day / Night mode that remembers the user’s preference.
+- Expanded the platform to support all 12 official departments with tailored descriptions, skills, and application questions.
+- Fixed the hidden backend data-loss bug: the required motivation response was shown in the form but never stored; it is now validated and persisted.
+- Reworked application submission into one atomic operation, preventing partial saves when applying to multiple departments.
+- Added deterministic application IDs and idempotent requests to prevent duplicate submissions and double-click race conditions.
+- Secured the backend with server-side session checks, role-protected admin routes, validation through Zod, and deny-by-default Firestore rules.
+- Built a protected admin review workflow with applicant search, filters, shortlist actions, and safer email delivery controls.
+- Verified the full local application journey end-to-end: authentication, department selection, form validation, successful submission, saved submission status, and production build.
 
 ## A quick look at the engineering decisions
 

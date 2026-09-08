@@ -19,6 +19,32 @@ The portal supports 12 departments: Management, Publicity, Outreach, UI/UX, Crea
 - Built a protected admin review workflow with applicant search, filters, shortlist actions, and safer email delivery controls.
 - Verified the full local application journey end-to-end: authentication, department selection, form validation, successful submission, saved submission status, and production build.
 
+  ## Screenshots
+
+### Landing page
+
+![GDG on Campus VIT Chennai recruitment portal landing page](./assets/screenshots/home-light.png)
+
+### Department discovery
+
+![Department discovery page showing the 12 recruitment departments](./assets/screenshots/department-discovery.png)
+
+### Secure sign-in
+
+![Candidate sign-in page with email and Google OAuth options](./assets/screenshots/sign-in.png)
+
+### Day / Night mode and department selection
+
+![Dark mode department-selection experience](./assets/screenshots/department-selection-dark.png)
+
+### Application form
+
+![Structured department application form with validated candidate details](./assets/screenshots/application-form.png)
+
+### Successful application submission
+
+![Application received confirmation state after a successful submission](./assets/screenshots/application-success.png)
+
 ## A quick look at the engineering decisions
 
 The original implementation sent one request per selected department. If one request failed, a candidate could be left with an incomplete application; two simultaneous requests could also bypass the two-department limit. The upgraded flow validates the complete application once and commits it atomically.

@@ -71,13 +71,11 @@ npm run dev
 
 For a production-like data setup, add Firebase service-account credentials in `.env.local`. For a credential-free local preview, the documented local demo configuration keeps submissions only in server memory; it is intentionally cleared when the server restarts.
 
-## Deployment notes
-
-- Set `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, and `FIREBASE_PRIVATE_KEY`.
-- Set a long random `BETTER_AUTH_SECRET` and the exact deployed `BETTER_AUTH_URL`.
-- If using Google sign-in, configure `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and the deployment callback URL: `/api/auth/callback/google`.
-- Deploy the included `firestore.rules` before collecting real applications.
-- Create an account with the Better Auth `admin` role before using `/admin`.
+## What was the Hidden backend Error which was solved 
+- The original form displayed the required question: “Why do you want to join Organization Name?”
+- But when submitting, it never added that answer to basicDetails or Questions.
+- The backend therefore accepted the application but permanently discarded that response.
+- This was fixed
 
 ## For reviewers
 

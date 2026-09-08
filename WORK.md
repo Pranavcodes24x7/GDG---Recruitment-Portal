@@ -1,10 +1,33 @@
-# Work completed — Recruitment Portal Upgrade
+# GDG VITC RECRUITMENT PORTAL
 
-## Outcome
+👉 Deployed Live Recruitment Portal Website - https://gdg-portal-phi.vercel.app/
 
-The supplied project has been rebuilt as a polished, mobile-first recruitment portal for **GDG on Campus**. The work was intentionally not limited to visual changes: it addresses the hidden response-storage defect, data consistency, access control, performance, admin workflow, and deployment readiness.
+How was the backend error fixed :
 
-The original archive is not modified. This folder is the clean, GitHub-ready deliverable. No `.env.local`, Firebase key, password, or other local secret is included.
+The Error Was:
+The original form displayed the required question: “Why do you want to join Organization Name?”
+But when submitting, it never added that answer to basicDetails or Questions.
+The backend therefore accepted the application but permanently discarded that response.
+
+It was fixed in three layers:
+1. The form now explicitly sends the answer as profile.motivation when the user submits
+2. The backend validates it using Zod. A missing or too-short motivation answer is rejected before anything is saved.
+3. The backend stores the complete profile object—including motivation—inside every submitted application record, in the same atomic transaction as the department answers.
+
+## What I Improved in short :
+
+**Rebuilt the portal into a polished, responsive GDG on Campus VIT Chennai recruitment experience with a clear candidate journey from discovery to submission.
+**Added Google OAuth and email/password authentication, keeping credentials securely outside the codebase.
+I**mplemented an accessible Day / Night mode that remembers the user’s preference.
+**Expanded the platform to support all 12 official departments with tailored descriptions, skills, and application questions.
+**Fixed the hidden backend data-loss bug: the required motivation response was shown in the form but never stored; it is now validated and persisted.
+**Reworked application submission into one atomic operation, preventing partial saves when applying to multiple departments.
+**Added deterministic application IDs and idempotent requests to prevent duplicate submissions and double-click race conditions.
+**Secured the backend with server-side session checks, role-protected admin routes, validation through Zod, and deny-by-default Firestore rules.
+**Built a protected admin review workflow with applicant search, filters, shortlist actions, and safer email delivery controls.
+**Verified the full local application journey end-to-end: authentication, department selection, form validation, successful submission, saved submission status, and production build.
+
+## IN DETAIL
 
 ## Follow-up branding and authentication changes
 
@@ -20,7 +43,7 @@ The following requested refinements were applied after the initial upgrade:
 - Fixed local email sign-up/sign-in with an opt-in `AUTH_LOCAL_DEMO=true` adapter. It is deliberately volatile and intended only for credential-free visual / authentication testing. Real deployment continues to use Firestore credentials, as documented in `.env.example` and `README.md`.
 - Updated the department catalogue and the matching canonical application questions to all 12 departments: Management, Publicity, Outreach, UI/UX, Creatives, Web Dev, App Dev, Game Dev, Data Science, Blockchain, Cloud & DevOps, and Competitive Programming.
 
-## What changed
+## What I changed
 
 ### 1. A complete visual and experience redesign
 
@@ -186,17 +209,3 @@ These were removed from the active experience. The replacement uses direct deriv
 - The home page and mobile team-selector experience were visually reviewed in the local browser.
 - Requests to `/api/admin/applicants`, `/api/check-applications`, and `/api/submit-form` without a session each returned HTTP `401`.
 
-## What you need to configure before deploying
-
-1. Copy `.env.example` to `.env.local`.
-2. Add Firebase service-account credentials or configure a Firestore emulator locally.
-3. Use a long, random `BETTER_AUTH_SECRET` and set `BETTER_AUTH_URL` to your deployed domain.
-4. Add Google OAuth credentials only if you want Google sign-in.
-5. Deploy the included `firestore.rules`.
-6. Create / promote an admin user in Better Auth before opening the review desk.
-7. Replace `SITE.campus` and the placeholder social links in `constants/index.js` with your club’s real details.
-8. Set `RECRUITMENT_DEADLINE` only when you want the server to close submissions automatically.
-
-## Concise interview explanation
-
-“I treated the project as a production system rather than a visual task. I rebuilt the UX, but I first fixed a silent data-loss bug where the general motivation response was displayed but never persisted. I also changed the data flow from two parallel non-atomic document writes to a single validated Firestore transaction with deterministic IDs and idempotency. That guarantees the two-application rule under concurrent requests and prevents partial saves. Then I moved authorization to the server, denied direct Firestore client access, secured the admin and email APIs, and removed costly render loops. The result is easier to use, cheaper to operate, safer to deploy, and easier to extend.”

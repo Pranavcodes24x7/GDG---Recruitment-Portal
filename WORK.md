@@ -18,7 +18,7 @@ It was fixed in three layers:
 
 Rebuilt the portal into a polished, responsive GDG on Campus VIT Chennai recruitment experience with a clear candidate journey from discovery to submission.
 
-Added Google OAuth and email/password authentication, with credentials securely kept outside the codebase.
+Added Google OAuth and email/password authentication so that people can sign in with google easily, with credentials securely kept outside the codebase.
 
 Implemented an accessible Day / Night mode that remembers each user’s preference.
 

@@ -16,16 +16,16 @@ It was fixed in three layers:
 
 ## What I Improved in short :
 
-**Rebuilt the portal into a polished, responsive GDG on Campus VIT Chennai recruitment experience with a clear candidate journey from discovery to submission.
-**Added Google OAuth and email/password authentication, keeping credentials securely outside the codebase.
-I**mplemented an accessible Day / Night mode that remembers the user’s preference.
-**Expanded the platform to support all 12 official departments with tailored descriptions, skills, and application questions.
-**Fixed the hidden backend data-loss bug: the required motivation response was shown in the form but never stored; it is now validated and persisted.
-**Reworked application submission into one atomic operation, preventing partial saves when applying to multiple departments.
-**Added deterministic application IDs and idempotent requests to prevent duplicate submissions and double-click race conditions.
-**Secured the backend with server-side session checks, role-protected admin routes, validation through Zod, and deny-by-default Firestore rules.
-**Built a protected admin review workflow with applicant search, filters, shortlist actions, and safer email delivery controls.
-**Verified the full local application journey end-to-end: authentication, department selection, form validation, successful submission, saved submission status, and production build.
+-Rebuilt the portal into a polished, responsive GDG on Campus VIT Chennai recruitment experience with a clear candidate journey from discovery to submission.
+-Added Google OAuth and email/password authentication, keeping credentials securely outside the codebase.
+-Implemented an accessible Day / Night mode that remembers the user’s preference.
+-Expanded the platform to support all 12 official departments with tailored descriptions, skills, and application questions.
+-Fixed the hidden backend data-loss bug: the required motivation response was shown in the form but never stored; it is now validated and persisted.
+-Reworked application submission into one atomic operation, preventing partial saves when applying to multiple departments.
+-Added deterministic application IDs and idempotent requests to prevent duplicate submissions and double-click race conditions.
+-Secured the backend with server-side session checks, role-protected admin routes, validation through Zod, and deny-by-default Firestore rules.
+-Built a protected admin review workflow with applicant search, filters, shortlist actions, and safer email delivery controls.
+-Verified the full local application journey end-to-end: authentication, department selection, form validation, successful submission, saved submission status, and production build.
 
 ## IN DETAIL
 
